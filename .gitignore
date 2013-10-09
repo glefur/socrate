@@ -4,7 +4,5 @@
 # Config file - Preventing to commit my google l/p :p #
 config.properties
 
-# Package Files #
-*.jar
-*.war
-*.ear
+# Maven target #
+target
