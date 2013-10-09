@@ -47,7 +47,7 @@ public class ActivityCalendar {
 	public List<Activity> activitiesOfTheDay(DayOfTheWeek day) {
 		List<Activity> activities = calendar.get(day);
 		if (activities == null) {
-			return Collections.EMPTY_LIST;
+			return Collections.emptyList();
 		} else {
 			return activities;
 		}
