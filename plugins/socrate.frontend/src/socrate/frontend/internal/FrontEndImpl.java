@@ -20,13 +20,11 @@
 package socrate.frontend.internal;
 
 import java.util.List;
-import java.util.Map;
 
 import socrate.calendar.Activity;
+import socrate.calendar.ActivityCalendar;
 import socrate.calendar.CalendarService;
 import socrate.calendar.CalendarService.DayOfTheWeek;
-
-
 
 /**
  * @author <a href="mailto:goulwen.lefur@gmail.com">Goulwen Le Fur</a>
@@ -45,10 +43,10 @@ public class FrontEndImpl {
 	
 	public void activate() {
 		System.out.println("Activated! Service " + calendarService);
-		Map<DayOfTheWeek, List<Activity>> activitiesOfWeek = calendarService.activitiesOfWeek(41);
-		for (DayOfTheWeek day : activitiesOfWeek.keySet()) {
+		ActivityCalendar activitiesOfWeek = calendarService.activitiesOfWeek(41);
+		for (DayOfTheWeek day : DayOfTheWeek.values()) {
 			System.out.println("On " + day);
-			List<Activity> activities = activitiesOfWeek.get(day);
+			List<Activity> activities = activitiesOfWeek.activitiesOfTheDay(day);
 			for (Activity activity : activities) {
 				System.out.println("\tAt " + activity.getStartTime() + " " + activity.getTitle());
 			}

@@ -19,8 +19,6 @@
 package socrate.calendar;
 
 import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author <a href="mailto:goulwen.lefur@gmail.com">Goulwen Le Fur</a>
@@ -33,7 +31,7 @@ public interface CalendarService {
 	 * @param weekNumber the number of the requested week.
 	 * @return the associated list of {@link Activity}ies.
 	 */
-	Map<DayOfTheWeek, List<Activity>> activitiesOfWeek(int weekNumber);
+	ActivityCalendar activitiesOfWeek(int weekNumber);
 	
 	public enum DayOfTheWeek {
 		

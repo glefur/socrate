@@ -23,18 +23,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 import org.osgi.framework.BundleContext;
 
-import socrate.calendar.Activity;
+import socrate.calendar.ActivityCalendar;
 import socrate.calendar.CalendarService;
 import socrate.calendar.util.DateTimeService;
 import socrate.calendar.util.DateTimeService.DateInterval;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import com.google.gdata.client.calendar.CalendarQuery;
 import com.google.gdata.data.DateTime;
 import com.google.gdata.data.calendar.CalendarEventEntry;
@@ -93,16 +90,14 @@ public class GoogleCalendarService implements CalendarService {
 	 * {@inheritDoc}
 	 * @see socrate.calendar.CalendarService#activitiesOfWeek(int)
 	 */
-	public Map<DayOfTheWeek, List<Activity>> activitiesOfWeek(int weekNumber) {
-		Map<DayOfTheWeek, List<Activity>> result = Maps.newHashMap();
+	public ActivityCalendar activitiesOfWeek(int weekNumber) {
+		ActivityCalendar result = new ActivityCalendar();
 		for (DayOfTheWeek dayOfTheWeek : DayOfTheWeek.values()) {
 			DateInterval interval = dateTimeService.dayOfWeek(weekNumber, dayOfTheWeek);
-			List<Activity> activities = Lists.newArrayList();
 			try {
 				for (CalendarEventEntry event : eventOfInterval(interval)) {
-					activities.add(new GoogleActivity(event));
+					result.addActivity(dayOfTheWeek, new GoogleActivity(event));
 				}
-				result.put(dayOfTheWeek, activities);
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (ServiceException e) {
