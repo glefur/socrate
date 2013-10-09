@@ -22,7 +22,7 @@ package socrate.calendar.internal.util;
 import java.util.Calendar;
 import java.util.Date;
 
-import socrate.calendar.services.CalendarService.DayOfTheWeek;
+import socrate.calendar.DayOfTheWeek;
 import socrate.calendar.util.DateTimeService;
 
 

@@ -25,8 +25,6 @@ import java.util.Map;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
-import socrate.calendar.services.CalendarService.DayOfTheWeek;
-
 /**
  *
  * @author <a href="mailto:goulwen.lefur@gmail.com">Goulwen Le Fur</a>
@@ -106,4 +104,5 @@ public final class ActivityCalendar {
 			currentActivities.removeAll(activities);
 		}
 	}
+
 }

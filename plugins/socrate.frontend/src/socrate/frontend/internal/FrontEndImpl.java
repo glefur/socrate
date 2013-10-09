@@ -23,8 +23,8 @@ import java.util.List;
 
 import socrate.calendar.Activity;
 import socrate.calendar.ActivityCalendar;
+import socrate.calendar.DayOfTheWeek;
 import socrate.calendar.services.CalendarService;
-import socrate.calendar.services.CalendarService.DayOfTheWeek;
 
 /**
  * @author <a href="mailto:goulwen.lefur@gmail.com">Goulwen Le Fur</a>

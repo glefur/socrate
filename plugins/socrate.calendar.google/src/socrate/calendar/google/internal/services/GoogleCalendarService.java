@@ -28,6 +28,7 @@ import java.util.Properties;
 import org.osgi.framework.BundleContext;
 
 import socrate.calendar.ActivityCalendar;
+import socrate.calendar.DayOfTheWeek;
 import socrate.calendar.services.CalendarService;
 import socrate.calendar.util.DateTimeService;
 import socrate.calendar.util.DateTimeService.DateInterval;
