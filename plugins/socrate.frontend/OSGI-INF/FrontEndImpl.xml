@@ -4,5 +4,5 @@
    <service>
       <provide interface="socrate.frontend.FrontEnd"/>
    </service>
-   <reference bind="setCalendarService" cardinality="1..1" interface="socrate.calendar.CalendarService" name="CalendarService" policy="static"/>
+   <reference bind="setCalendarService" cardinality="1..1" interface="socrate.calendar.services.CalendarService" name="CalendarService" policy="static"/>
 </scr:component>

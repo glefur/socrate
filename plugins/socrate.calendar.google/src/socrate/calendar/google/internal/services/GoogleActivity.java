@@ -17,7 +17,7 @@
  * along with SoCrate.  If not, see <http ://www.gnu.org/licenses/>.
  */
 
-package socrate.calendar.google.internal;
+package socrate.calendar.google.internal.services;
 
 import socrate.calendar.Activity;
 

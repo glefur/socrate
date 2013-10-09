@@ -25,7 +25,7 @@ import java.util.Map;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
-import socrate.calendar.CalendarService.DayOfTheWeek;
+import socrate.calendar.services.CalendarService.DayOfTheWeek;
 
 /**
  *

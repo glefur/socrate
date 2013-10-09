@@ -17,7 +17,7 @@
  * along with SoCrate.  If not, see <http ://www.gnu.org/licenses/>.
  */
 
-package socrate.calendar.google.internal;
+package socrate.calendar.google.internal.services;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,7 +28,7 @@ import java.util.Properties;
 import org.osgi.framework.BundleContext;
 
 import socrate.calendar.ActivityCalendar;
-import socrate.calendar.CalendarService;
+import socrate.calendar.services.CalendarService;
 import socrate.calendar.util.DateTimeService;
 import socrate.calendar.util.DateTimeService.DateInterval;
 
@@ -88,7 +88,7 @@ public class GoogleCalendarService implements CalendarService {
 
 	/**
 	 * {@inheritDoc}
-	 * @see socrate.calendar.CalendarService#activitiesOfWeek(int)
+	 * @see socrate.calendar.services.CalendarService#activitiesOfWeek(int)
 	 */
 	public ActivityCalendar activitiesOfWeek(int weekNumber) {
 		ActivityCalendar result = new ActivityCalendar();

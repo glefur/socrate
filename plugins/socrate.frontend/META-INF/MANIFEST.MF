@@ -8,5 +8,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Import-Package: org.osgi.framework;version="1.7.0",
  org.osgi.service.cm;version="1.4.0",
- socrate.calendar
+ socrate.calendar,
+ socrate.calendar.services
 Service-Component: OSGI-INF/FrontEndImpl.xml

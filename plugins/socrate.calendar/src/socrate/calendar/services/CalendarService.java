@@ -16,9 +16,12 @@
  * You should have received a copy of the GNU General Public License
  * along with SoCrate.  If not, see <http ://www.gnu.org/licenses/>.
  */
-package socrate.calendar;
+package socrate.calendar.services;
 
 import java.util.Calendar;
+
+import socrate.calendar.Activity;
+import socrate.calendar.ActivityCalendar;
 
 /**
  * @author <a href="mailto:goulwen.lefur@gmail.com">Goulwen Le Fur</a>

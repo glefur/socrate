@@ -21,7 +21,7 @@ package socrate.calendar.util;
 
 import java.util.Date;
 
-import socrate.calendar.CalendarService.DayOfTheWeek;
+import socrate.calendar.services.CalendarService.DayOfTheWeek;
 
 
 
