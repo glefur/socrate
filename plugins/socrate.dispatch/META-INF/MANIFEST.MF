@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: SoCrate - Dispatch API
+Bundle-SymbolicName: socrate.dispatch
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Goulwen Le Fur
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

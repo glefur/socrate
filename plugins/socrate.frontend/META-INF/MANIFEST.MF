@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: SoCrate FrontEnd
+Bundle-SymbolicName: socrate.frontend
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Goulwen Le Fur
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Import-Package: org.osgi.framework;version="1.7.0",
+ org.osgi.service.cm;version="1.4.0",
+ socrate.calendar
+Service-Component: OSGI-INF/FrontEndImpl.xml
