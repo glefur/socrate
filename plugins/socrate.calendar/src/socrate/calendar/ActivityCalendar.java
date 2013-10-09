@@ -31,7 +31,7 @@ import socrate.calendar.services.CalendarService.DayOfTheWeek;
  *
  * @author <a href="mailto:goulwen.lefur@gmail.com">Goulwen Le Fur</a>
  */
-public class ActivityCalendar {
+public final class ActivityCalendar {
 
 	private Map<DayOfTheWeek, List<Activity>> calendar;
 
