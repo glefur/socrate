@@ -29,9 +29,9 @@ import com.google.common.collect.Maps;
  *
  * @author <a href="mailto:goulwen.lefur@gmail.com">Goulwen Le Fur</a>
  */
-public final class ActivityCalendar {
+public class ActivityCalendar<T extends Activity> {
 
-	private Map<DayOfTheWeek, List<Activity>> calendar;
+	private Map<DayOfTheWeek, List<T>> calendar;
 
 	public ActivityCalendar() {
 		calendar = Maps.newHashMap();
@@ -42,8 +42,8 @@ public final class ActivityCalendar {
 	 * @param day the {@link DayOfTheWeek}.
 	 * @return the {@link List} of {@link Activity}ies of the given day.
 	 */
-	public List<Activity> activitiesOfTheDay(DayOfTheWeek day) {
-		List<Activity> activities = calendar.get(day);
+	public final List<T> activitiesOfTheDay(DayOfTheWeek day) {
+		List<T> activities = calendar.get(day);
 		if (activities == null) {
 			return Collections.emptyList();
 		} else {
@@ -56,8 +56,8 @@ public final class ActivityCalendar {
 	 * @param day {@link DayOfTheWeek} when to add the activity.
 	 * @param activity {@link Activity} to add.
 	 */
-	public void addActivity(DayOfTheWeek day, Activity activity) {
-		List<Activity> activities = calendar.get(day);
+	public final void addActivity(DayOfTheWeek day, T activity) {
+		List<T> activities = calendar.get(day);
 		if (activities == null) {
 			activities = Lists.newArrayList();
 			calendar.put(day, activities);
@@ -71,8 +71,8 @@ public final class ActivityCalendar {
 	 * @param day {@link DayOfTheWeek} when to add the activity.
 	 * @param activities the {@link Activity}ies to add.
 	 */
-	public void addActivities(DayOfTheWeek day, List<Activity> activities) {
-		List<Activity> currentActivities = calendar.get(day);
+	public final void addActivities(DayOfTheWeek day, List<T> activities) {
+		List<T> currentActivities = calendar.get(day);
 		if (currentActivities == null) {
 			calendar.put(day, activities);
 		} else {
@@ -85,8 +85,8 @@ public final class ActivityCalendar {
 	 * @param day {@link DayOfTheWeek} when to remove the activity.
 	 * @param activity {@link Activity} to remove.
 	 */
-	public void removeActivity(DayOfTheWeek day, Activity activity) {
-		List<Activity> activities = calendar.get(day);
+	public final void removeActivity(DayOfTheWeek day, T activity) {
+		List<T> activities = calendar.get(day);
 		if (activities != null) {
 			activities.remove(activity);
 		}
@@ -96,10 +96,10 @@ public final class ActivityCalendar {
 	/**
 	 * Removes a list of activities at the given day.
 	 * @param day {@link DayOfTheWeek} when to remove the activity.
-	 * @param activities the {@link Activity}ies to remove.
+	 * @param activities the {@link ActualActivity}ies to remove.
 	 */
-	public void removeActivities(DayOfTheWeek day, List<Activity> activities) {
-		List<Activity> currentActivities = calendar.get(day);
+	public final void removeActivities(DayOfTheWeek day, List<T> activities) {
+		List<T> currentActivities = calendar.get(day);
 		if (currentActivities != null) {
 			currentActivities.removeAll(activities);
 		}

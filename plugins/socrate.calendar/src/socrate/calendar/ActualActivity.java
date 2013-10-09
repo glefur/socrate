@@ -17,44 +17,22 @@
  * along with SoCrate.  If not, see <http ://www.gnu.org/licenses/>.
  */
 
-package socrate.calendar.google.internal.services;
-
-import socrate.calendar.ActualActivity;
-
-import com.google.gdata.data.calendar.CalendarEventEntry;
-import com.google.gdata.data.extensions.When;
-
-
+package socrate.calendar;
 
 /**
  * @author <a href="mailto:goulwen.lefur@gmail.com">Goulwen Le Fur</a>
  *
  */
-public class GoogleActivity implements ActualActivity {
+public interface ActualActivity extends Activity {
 
-	private CalendarEventEntry event;
-
-	public GoogleActivity(CalendarEventEntry event) {
-		this.event = event;
-	}
+	/**
+	 * @return the title of the activity.
+	 */
+	public String getTitle();
 	
 	/**
-	 * {@inheritDoc}
-	 * @see socrate.calendar.ActualActivity#getTitle()
+	 * @return the start time of the current activity.
 	 */
-	@Override
-	public String getTitle() {
-		return event.getTitle().getPlainText();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * @see socrate.calendar.ActualActivity#getStartTime()
-	 */
-	@Override
-	public long getStartTime() {
-		When when = event.getTimes().get(0);
-		return when.getStartTime().getValue();
-	}
+	public long getStartTime();
 	
 }

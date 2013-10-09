@@ -27,7 +27,7 @@ import java.util.Properties;
 
 import org.osgi.framework.BundleContext;
 
-import socrate.calendar.ActivityCalendar;
+import socrate.calendar.ActualCalendar;
 import socrate.calendar.DayOfTheWeek;
 import socrate.calendar.services.CalendarService;
 import socrate.calendar.util.DateTimeService;
@@ -91,8 +91,8 @@ public class GoogleCalendarService implements CalendarService {
 	 * {@inheritDoc}
 	 * @see socrate.calendar.services.CalendarService#activitiesOfWeek(int)
 	 */
-	public ActivityCalendar activitiesOfWeek(int weekNumber) {
-		ActivityCalendar result = new ActivityCalendar();
+	public ActualCalendar activitiesOfWeek(int weekNumber) {
+		ActualCalendar result = new ActualCalendar();
 		for (DayOfTheWeek dayOfTheWeek : DayOfTheWeek.values()) {
 			DateInterval interval = dateTimeService.dayOfWeek(weekNumber, dayOfTheWeek);
 			try {

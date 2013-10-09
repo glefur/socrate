@@ -18,10 +18,12 @@
  */
 package socrate.calendar;
 
+
 /**
  *
  * @author <a href="mailto:goulwen.lefur@gmail.com">Goulwen Le Fur</a>
  */
-public interface Activity {
+public final class ActualCalendar extends ActivityCalendar<ActualActivity> {
+
 
 }

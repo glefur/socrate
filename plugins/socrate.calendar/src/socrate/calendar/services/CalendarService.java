@@ -19,8 +19,8 @@
 package socrate.calendar.services;
 
 
-import socrate.calendar.Activity;
-import socrate.calendar.ActivityCalendar;
+import socrate.calendar.ActualActivity;
+import socrate.calendar.ActualCalendar;
 
 /**
  * @author <a href="mailto:goulwen.lefur@gmail.com">Goulwen Le Fur</a>
@@ -31,8 +31,8 @@ public interface CalendarService {
 	/**
 	 * Returns all the activities performed during the given week.
 	 * @param weekNumber the number of the requested week.
-	 * @return the associated list of {@link Activity}ies.
+	 * @return the associated list of {@link ActualActivity}ies.
 	 */
-	ActivityCalendar activitiesOfWeek(int weekNumber);
+	ActualCalendar activitiesOfWeek(int weekNumber);
 	
 }
