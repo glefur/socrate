@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="startup" enabled="true" immediate="true" name="fr.sc.crator.StartUp">
+   <implementation class="fr.sc.crator.internal.CratorStartUp"/>
+   <service>
+      <provide interface="fr.sc.crator.StartUp"/>
+   </service>
+   <reference bind="setReportingScheduler" cardinality="1..1" interface="fr.sc.crator.scheduling.ReportingScheduler" name="ReportingScheluder" policy="static"/>
+   <reference bind="setStorageHandler" cardinality="1..1" interface="fr.sc.crator.storage.CRAStorageHandler" name="CRAStorageHandler" policy="static"/>
+   <reference bind="setPopulatingPolicy" cardinality="1..1" interface="fr.sc.crator.populating.CRAPopulatingPolicy" name="CRAPopulatingPolicy" policy="static"/>
+</scr:component>

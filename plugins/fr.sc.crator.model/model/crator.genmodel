@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/fr.sc.crator.model/src-gen" modelPluginID="fr.sc.crator.model"
+    modelName="Crator" modelPluginClass="" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false">
+  <foreignModel>crator.ecore</foreignModel>
+  <genPackages prefix="Crator" basePackage="fr.sc" disposableProviderFactory="true"
+      ecorePackage="crator.ecore#/">
+    <genClasses ecoreClass="crator.ecore#//CRAtor">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference crator.ecore#//CRAtor/weeks"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference crator.ecore#//CRAtor/tasks"/>
+    </genClasses>
+    <genClasses ecoreClass="crator.ecore#//CRAWeek">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference crator.ecore#//CRAWeek/days"/>
+    </genClasses>
+    <genClasses ecoreClass="crator.ecore#//CRADay">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute crator.ecore#//CRADay/day"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference crator.ecore#//CRADay/works"/>
+    </genClasses>
+    <genClasses ecoreClass="crator.ecore#//Task">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute crator.ecore#//Task/code"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute crator.ecore#//Task/description"/>
+    </genClasses>
+    <genClasses ecoreClass="crator.ecore#//Work">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute crator.ecore#//Work/load"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference crator.ecore#//Work/task"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
