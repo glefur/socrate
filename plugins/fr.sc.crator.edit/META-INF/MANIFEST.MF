@@ -13,3 +13,5 @@ Require-Bundle: org.eclipse.core.runtime,
  fr.sc.crator.model;visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport
 Bundle-ActivationPolicy: lazy
+Import-Package: org.eclipse.emf.eef.runtime.binding.settings
+Service-Component: OSGI-INF/CRAtorBindingSettings.xml

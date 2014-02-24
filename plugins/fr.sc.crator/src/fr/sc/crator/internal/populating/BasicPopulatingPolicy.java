@@ -39,22 +39,27 @@ public class BasicPopulatingPolicy implements CRAPopulatingPolicy {
 	 */
 	@Override
 	public void populateCRA(CRA cra) {
-		Task task =cra.getCrator().getTask("OBEO-AVV-DVRS");
-		if (task == null) {
-			task = CratorFactory.eINSTANCE.createTask();
-			task.setCode("OBEO-AVV-DVRS");
-			task.setDescription("AVV Divers");
-		}
 		for (int day = Calendar.MONDAY; day <= Calendar.FRIDAY; day++) {
 			CRADay workDay = cra.getWeek().getDay(day);
 			double totalLoad = workDay.totalLoad();
 			if (totalLoad < 1) {
 				Work work = CratorFactory.eINSTANCE.createWork();
 				work.setLoad(1 - totalLoad);
-				work.setTask(task);
+				work.setTask(getAVVDVRSTask(cra));
 				workDay.getWorks().add(work);
 			}
 		}
+	}
+
+	private Task getAVVDVRSTask(CRA cra) {
+		Task task = cra.getCrator().getTask("OBEO-AVV-DVRS");
+		if (task == null) {
+			task = CratorFactory.eINSTANCE.createTask();
+			task.setCode("OBEO-AVV-DVRS");
+			task.setDescription("AVV Divers");
+			cra.getCrator().getTasks().add(task);
+		}
+		return task;
 	}
 
 }

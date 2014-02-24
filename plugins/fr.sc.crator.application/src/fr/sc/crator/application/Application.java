@@ -2,12 +2,17 @@ package fr.sc.crator.application;
 
 import java.util.List;
 
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.eef.runtime.context.EditingContextFactoryProvider;
+import org.eclipse.emf.eef.runtime.context.PropertiesEditingContext;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
+import org.eclipse.swt.widgets.Shell;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.util.tracker.ServiceTracker;
 
+import fr.sc.crator.application.ui.dialog.CRAConfiguringDialog;
 import fr.sc.crator.model.CRA;
 import fr.sc.crator.model.CRAtor;
 import fr.sc.crator.model.CratorFactory;
@@ -23,6 +28,7 @@ public class Application implements IApplication {
 	private ServiceTracker<ReportingScheduler, ReportingScheduler> schedulerTracker;
 	private ServiceTracker<CRAStorageHandler, CRAStorageHandler> storageHandlerTracker;
 	private ServiceTracker<CRAPopulatingPolicy, CRAPopulatingPolicy> populatingPolicyTracker;
+	private ServiceTracker<EditingContextFactoryProvider, EditingContextFactoryProvider> contextFactoryProvider;
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.equinox.app.IApplication#start(org.eclipse.equinox.app.IApplicationContext)
@@ -36,6 +42,14 @@ public class Application implements IApplication {
 		CRAPopulatingPolicy populatingPolicy = populatingPolicyTracker.getService();
 		
 		List<CRA> craToFillIn = reportingScheduler.craToFillIn(crator);
+		if (craToFillIn.size() > 0) {
+			CRAConfiguringDialog dialog = new CRAConfiguringDialog(new Shell());
+			EditingContextFactoryProvider editingContextFactoryProvider = contextFactoryProvider.getService();
+			PropertiesEditingContext propertiesEditingContext = editingContextFactoryProvider.getEditingContextFactory(crator).createPropertiesEditingContext(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE), crator);
+			dialog.setInput(propertiesEditingContext);
+			dialog.open();
+		}
+
 		for (CRA cra : craToFillIn) {
 			populatingPolicy.populateCRA(cra);
 			storageHandler.writeCRA(cra);			
@@ -60,6 +74,8 @@ public class Application implements IApplication {
 		storageHandlerTracker.open();
 		populatingPolicyTracker = new ServiceTracker<CRAPopulatingPolicy, CRAPopulatingPolicy>(bundleContext, CRAPopulatingPolicy.class, null);
 		populatingPolicyTracker.open();
+		contextFactoryProvider = new ServiceTracker<EditingContextFactoryProvider, EditingContextFactoryProvider>(bundleContext, EditingContextFactoryProvider.class, null);
+		contextFactoryProvider.open();
 	}
 
 	private CRAtor loadCRAtor() {
