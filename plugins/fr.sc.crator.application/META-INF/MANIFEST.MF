@@ -7,7 +7,8 @@ Bundle-Vendor: SC
 Require-Bundle: org.eclipse.core.runtime
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
-Import-Package: fr.sc.crator.logging,
+Import-Package: com.google.common.collect;version="12.0.0",
+ fr.sc.crator.logging,
  fr.sc.crator.model,
  fr.sc.crator.populating,
  fr.sc.crator.scheduling,
@@ -15,6 +16,8 @@ Import-Package: fr.sc.crator.logging,
  org.eclipse.emf.common.notify,
  org.eclipse.emf.ecore,
  org.eclipse.emf.edit.provider,
+ org.eclipse.emf.edit.ui.provider,
+ org.eclipse.emf.eef.runtime.binding,
  org.eclipse.emf.eef.runtime.context,
  org.eclipse.emf.eef.runtime.ui.swt.viewer,
  org.eclipse.jface.dialogs,

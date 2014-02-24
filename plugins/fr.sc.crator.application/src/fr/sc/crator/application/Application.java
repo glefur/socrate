@@ -2,6 +2,7 @@ package fr.sc.crator.application;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.eef.runtime.context.EditingContextFactoryProvider;
 import org.eclipse.emf.eef.runtime.context.PropertiesEditingContext;
@@ -29,6 +30,7 @@ public class Application implements IApplication {
 	private ServiceTracker<CRAStorageHandler, CRAStorageHandler> storageHandlerTracker;
 	private ServiceTracker<CRAPopulatingPolicy, CRAPopulatingPolicy> populatingPolicyTracker;
 	private ServiceTracker<EditingContextFactoryProvider, EditingContextFactoryProvider> contextFactoryProvider;
+	private ComposedAdapterFactory adapterFactory;
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.equinox.app.IApplication#start(org.eclipse.equinox.app.IApplicationContext)
@@ -43,10 +45,21 @@ public class Application implements IApplication {
 		
 		List<CRA> craToFillIn = reportingScheduler.craToFillIn(crator);
 		if (craToFillIn.size() > 0) {
-			CRAConfiguringDialog dialog = new CRAConfiguringDialog(new Shell());
-			EditingContextFactoryProvider editingContextFactoryProvider = contextFactoryProvider.getService();
-			PropertiesEditingContext propertiesEditingContext = editingContextFactoryProvider.getEditingContextFactory(crator).createPropertiesEditingContext(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE), crator);
-			dialog.setInput(propertiesEditingContext);
+			adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+			CRAConfiguringDialog dialog = new CRAConfiguringDialog(new Shell(), adapterFactory) {
+
+				/**
+				 * {@inheritDoc}
+				 * @see fr.sc.crator.application.ui.dialog.CRAConfiguringDialog#createEditingContext(org.eclipse.emf.ecore.EObject)
+				 */
+				@Override
+				public PropertiesEditingContext createEditingContext(EObject source) {
+					EditingContextFactoryProvider editingContextFactoryProvider = contextFactoryProvider.getService();
+					return editingContextFactoryProvider.getEditingContextFactory(source).createPropertiesEditingContext(adapterFactory, source);
+				}
+				
+			};
+			dialog.setInput(crator.getCras());
 			dialog.open();
 		}
 
