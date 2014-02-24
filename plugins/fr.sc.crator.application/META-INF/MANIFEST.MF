@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: CRAtor
+Bundle-SymbolicName: fr.sc.crator.application; singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: SC
+Require-Bundle: org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Import-Package: fr.sc.crator.logging,
+ fr.sc.crator.model,
+ fr.sc.crator.populating,
+ fr.sc.crator.scheduling,
+ fr.sc.crator.storage
