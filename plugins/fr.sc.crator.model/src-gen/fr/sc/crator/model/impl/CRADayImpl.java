@@ -1,10 +1,10 @@
 /**
  */
-package fr.sc.crator.impl;
+package fr.sc.crator.model.impl;
 
-import fr.sc.crator.CRADay;
-import fr.sc.crator.CratorPackage;
-import fr.sc.crator.Work;
+import fr.sc.crator.model.CRADay;
+import fr.sc.crator.model.CratorPackage;
+import fr.sc.crator.model.Work;
 
 import java.util.Collection;
 
@@ -29,8 +29,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link fr.sc.crator.impl.CRADayImpl#getDay <em>Day</em>}</li>
- *   <li>{@link fr.sc.crator.impl.CRADayImpl#getWorks <em>Works</em>}</li>
+ *   <li>{@link fr.sc.crator.model.impl.CRADayImpl#getDay <em>Day</em>}</li>
+ *   <li>{@link fr.sc.crator.model.impl.CRADayImpl#getWorks <em>Works</em>}</li>
  * </ul>
  * </p>
  *
@@ -117,6 +117,19 @@ public class CRADayImpl extends EObjectImpl implements CRADay {
 			works = new EObjectContainmentEList<Work>(Work.class, this, CratorPackage.CRA_DAY__WORKS);
 		}
 		return works;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public double totalLoad() {
+		double result = 0;
+		for (Work work : getWorks()) {
+			result += work.getLoad();
+		}
+		return result;
 	}
 
 	/**

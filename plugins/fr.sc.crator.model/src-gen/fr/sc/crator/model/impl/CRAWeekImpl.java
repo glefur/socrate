@@ -1,10 +1,11 @@
 /**
  */
-package fr.sc.crator.impl;
+package fr.sc.crator.model.impl;
 
-import fr.sc.crator.CRADay;
-import fr.sc.crator.CRAWeek;
-import fr.sc.crator.CratorPackage;
+import fr.sc.crator.model.CRADay;
+import fr.sc.crator.model.CRAWeek;
+import fr.sc.crator.model.CratorFactory;
+import fr.sc.crator.model.CratorPackage;
 
 import java.util.Collection;
 
@@ -27,7 +28,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link fr.sc.crator.impl.CRAWeekImpl#getDays <em>Days</em>}</li>
+ *   <li>{@link fr.sc.crator.model.impl.CRAWeekImpl#getDays <em>Days</em>}</li>
  * </ul>
  * </p>
  *
@@ -73,6 +74,36 @@ public class CRAWeekImpl extends EObjectImpl implements CRAWeek {
 			days = new EObjectContainmentEList<CRADay>(CRADay.class, this, CratorPackage.CRA_WEEK__DAYS);
 		}
 		return days;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public CRADay getDay(int day) {
+		for (CRADay craDay : getDays()) {
+			if (craDay.getDay() == day) {
+				return craDay;
+			}
+		}
+		CRADay result = CratorFactory.eINSTANCE.createCRADay();
+		result.setDay(day);
+		getDays().add(result);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public double totalLoad() {
+		double result = 0;
+		for (CRADay craDay : getDays()) {
+			result += craDay.totalLoad();
+		}
+		return result;
 	}
 
 	/**

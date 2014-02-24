@@ -22,6 +22,8 @@ import java.util.List;
 
 import fr.sc.crator.StartUp;
 import fr.sc.crator.model.CRA;
+import fr.sc.crator.model.CRAtor;
+import fr.sc.crator.model.CratorFactory;
 import fr.sc.crator.populating.CRAPopulatingPolicy;
 import fr.sc.crator.scheduling.ReportingScheduler;
 import fr.sc.crator.storage.CRAStorageHandler;
@@ -63,12 +65,17 @@ public class CratorStartUp implements StartUp {
 	 * @see fr.sc.crator.StartUp#startup()
 	 */
 	public void startup() {
-		List<CRA> craToFillIn = reportingScheduler.craToFillIn();
+		CRAtor crator = loadCRAtor();
+		List<CRA> craToFillIn = reportingScheduler.craToFillIn(crator);
 		for (CRA cra : craToFillIn) {
 			populatingPolicy.populateCRA(cra);
 			storageHandler.writeCRA(cra);			
 		}
 		
+	}
+	
+	private CRAtor loadCRAtor() {
+		return CratorFactory.eINSTANCE.createCRAtor();
 	}
 	
 }

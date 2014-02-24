@@ -22,7 +22,9 @@ import java.util.Calendar;
 
 import fr.sc.crator.model.CRA;
 import fr.sc.crator.model.CRADay;
+import fr.sc.crator.model.CratorFactory;
 import fr.sc.crator.model.Task;
+import fr.sc.crator.model.Work;
 import fr.sc.crator.populating.CRAPopulatingPolicy;
 
 /**
@@ -33,16 +35,24 @@ public class BasicPopulatingPolicy implements CRAPopulatingPolicy {
 
 	/**
 	 * {@inheritDoc}
-	 * @see fr.sc.crator.populating.CRAPopulatingPolicy#populateCRA(fr.sc.crator.model.CRA)
+	 * @see fr.sc.crator.populating.CRAPopulatingPolicy#populateCRA(fr.sc.crator.model.model.CRA)
 	 */
 	@Override
 	public void populateCRA(CRA cra) {
-		Task task = new Task("OBEO-AVV-DVRS", "AVV Divers");
+		Task task =cra.getCrator().getTask("OBEO-AVV-DVRS");
+		if (task == null) {
+			task = CratorFactory.eINSTANCE.createTask();
+			task.setCode("OBEO-AVV-DVRS");
+			task.setDescription("AVV Divers");
+		}
 		for (int day = Calendar.MONDAY; day <= Calendar.FRIDAY; day++) {
 			CRADay workDay = cra.getWeek().getDay(day);
 			double totalLoad = workDay.totalLoad();
 			if (totalLoad < 1) {
-				workDay.addWork(1 - totalLoad, task);
+				Work work = CratorFactory.eINSTANCE.createWork();
+				work.setLoad(1 - totalLoad);
+				work.setTask(task);
+				workDay.getWorks().add(work);
 			}
 		}
 	}

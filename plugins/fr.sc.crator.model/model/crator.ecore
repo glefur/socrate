@@ -1,17 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="crator" nsURI="http://www.sc.fr/crator/1.0" nsPrefix="sc-crator">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="model" nsURI="http://www.sc.fr/crator/1.0" nsPrefix="sc-crator">
   <eClassifiers xsi:type="ecore:EClass" name="CRAtor">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="weeks" upperBound="-1"
-        eType="#//CRAWeek" containment="true"/>
+    <eOperations name="getTask" eType="#//Task">
+      <eParameters name="code" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cras" upperBound="-1" eType="#//CRA"
+        containment="true" eOpposite="#//CRA/crator"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tasks" upperBound="-1"
         eType="#//Task" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CRA" abstract="true" interface="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="weekNumber" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="week" lowerBound="1" eType="#//CRAWeek"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="source" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="crator" lowerBound="1"
+        eType="#//CRAtor" eOpposite="#//CRAtor/cras"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CRAWeek">
+    <eOperations name="getDay" lowerBound="1" eType="#//CRADay">
+      <eParameters name="day" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eOperations>
+    <eOperations name="totalLoad" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="days" lowerBound="5" upperBound="5"
         eType="#//CRADay" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CRADay">
+    <eOperations name="totalLoad" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="day" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="works" upperBound="-1"
         eType="#//Work" containment="true"/>
@@ -25,4 +43,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="load" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="task" lowerBound="1" eType="#//Task"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SpreadCRA" eSuperTypes="#//CRA">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sheet" lowerBound="1" eType="#//SpreadSheet"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="SpreadSheet" instanceClassName="org.apache.poi.ss.usermodel.Sheet"/>
+  <eClassifiers xsi:type="ecore:EClass" name="VoidCRA" eSuperTypes="#//CRA"/>
 </ecore:EPackage>

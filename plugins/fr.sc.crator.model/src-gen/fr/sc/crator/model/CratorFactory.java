@@ -1,6 +1,6 @@
 /**
  */
-package fr.sc.crator;
+package fr.sc.crator.model;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see fr.sc.crator.CratorPackage
+ * @see fr.sc.crator.model.CratorPackage
  * @generated
  */
 public interface CratorFactory extends EFactory {
@@ -19,7 +19,7 @@ public interface CratorFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	CratorFactory eINSTANCE = fr.sc.crator.impl.CratorFactoryImpl.init();
+	CratorFactory eINSTANCE = fr.sc.crator.model.impl.CratorFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>CR Ator</em>'.
@@ -65,6 +65,24 @@ public interface CratorFactory extends EFactory {
 	 * @generated
 	 */
 	Work createWork();
+
+	/**
+	 * Returns a new object of class '<em>Spread CRA</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Spread CRA</em>'.
+	 * @generated
+	 */
+	SpreadCRA createSpreadCRA();
+
+	/**
+	 * Returns a new object of class '<em>Void CRA</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Void CRA</em>'.
+	 * @generated
+	 */
+	VoidCRA createVoidCRA();
 
 	/**
 	 * Returns the package supported by this factory.

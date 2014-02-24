@@ -1,8 +1,8 @@
 /**
  */
-package fr.sc.crator.util;
+package fr.sc.crator.model.util;
 
-import fr.sc.crator.*;
+import fr.sc.crator.model.*;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.util.Switch;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see fr.sc.crator.CratorPackage
+ * @see fr.sc.crator.model.CratorPackage
  * @generated
  */
 public class CratorSwitch<T> extends Switch<T> {
@@ -72,6 +72,12 @@ public class CratorSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case CratorPackage.CRA: {
+				CRA cra = (CRA)theEObject;
+				T result = caseCRA(cra);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case CratorPackage.CRA_WEEK: {
 				CRAWeek craWeek = (CRAWeek)theEObject;
 				T result = caseCRAWeek(craWeek);
@@ -96,6 +102,20 @@ public class CratorSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case CratorPackage.SPREAD_CRA: {
+				SpreadCRA spreadCRA = (SpreadCRA)theEObject;
+				T result = caseSpreadCRA(spreadCRA);
+				if (result == null) result = caseCRA(spreadCRA);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case CratorPackage.VOID_CRA: {
+				VoidCRA voidCRA = (VoidCRA)theEObject;
+				T result = caseVoidCRA(voidCRA);
+				if (result == null) result = caseCRA(voidCRA);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -112,6 +132,21 @@ public class CratorSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCRAtor(CRAtor object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>CRA</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>CRA</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCRA(CRA object) {
 		return null;
 	}
 
@@ -172,6 +207,36 @@ public class CratorSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseWork(Work object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Spread CRA</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Spread CRA</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSpreadCRA(SpreadCRA object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Void CRA</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Void CRA</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVoidCRA(VoidCRA object) {
 		return null;
 	}
 

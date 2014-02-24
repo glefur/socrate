@@ -1,8 +1,8 @@
 /**
  */
-package fr.sc.crator.util;
+package fr.sc.crator.model.util;
 
-import fr.sc.crator.*;
+import fr.sc.crator.model.*;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see fr.sc.crator.CratorPackage
+ * @see fr.sc.crator.model.CratorPackage
  * @generated
  */
 public class CratorAdapterFactory extends AdapterFactoryImpl {
@@ -72,6 +72,10 @@ public class CratorAdapterFactory extends AdapterFactoryImpl {
 				return createCRAtorAdapter();
 			}
 			@Override
+			public Adapter caseCRA(CRA object) {
+				return createCRAAdapter();
+			}
+			@Override
 			public Adapter caseCRAWeek(CRAWeek object) {
 				return createCRAWeekAdapter();
 			}
@@ -86,6 +90,14 @@ public class CratorAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseWork(Work object) {
 				return createWorkAdapter();
+			}
+			@Override
+			public Adapter caseSpreadCRA(SpreadCRA object) {
+				return createSpreadCRAAdapter();
+			}
+			@Override
+			public Adapter caseVoidCRA(VoidCRA object) {
+				return createVoidCRAAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -108,13 +120,13 @@ public class CratorAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link fr.sc.crator.CRAtor <em>CR Ator</em>}'.
+	 * Creates a new adapter for an object of class '{@link fr.sc.crator.model.CRAtor <em>CR Ator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see fr.sc.crator.CRAtor
+	 * @see fr.sc.crator.model.CRAtor
 	 * @generated
 	 */
 	public Adapter createCRAtorAdapter() {
@@ -122,13 +134,27 @@ public class CratorAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link fr.sc.crator.CRAWeek <em>CRA Week</em>}'.
+	 * Creates a new adapter for an object of class '{@link fr.sc.crator.model.CRA <em>CRA</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see fr.sc.crator.CRAWeek
+	 * @see fr.sc.crator.model.CRA
+	 * @generated
+	 */
+	public Adapter createCRAAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.sc.crator.model.CRAWeek <em>CRA Week</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.sc.crator.model.CRAWeek
 	 * @generated
 	 */
 	public Adapter createCRAWeekAdapter() {
@@ -136,13 +162,13 @@ public class CratorAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link fr.sc.crator.CRADay <em>CRA Day</em>}'.
+	 * Creates a new adapter for an object of class '{@link fr.sc.crator.model.CRADay <em>CRA Day</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see fr.sc.crator.CRADay
+	 * @see fr.sc.crator.model.CRADay
 	 * @generated
 	 */
 	public Adapter createCRADayAdapter() {
@@ -150,13 +176,13 @@ public class CratorAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link fr.sc.crator.Task <em>Task</em>}'.
+	 * Creates a new adapter for an object of class '{@link fr.sc.crator.model.Task <em>Task</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see fr.sc.crator.Task
+	 * @see fr.sc.crator.model.Task
 	 * @generated
 	 */
 	public Adapter createTaskAdapter() {
@@ -164,16 +190,44 @@ public class CratorAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link fr.sc.crator.Work <em>Work</em>}'.
+	 * Creates a new adapter for an object of class '{@link fr.sc.crator.model.Work <em>Work</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see fr.sc.crator.Work
+	 * @see fr.sc.crator.model.Work
 	 * @generated
 	 */
 	public Adapter createWorkAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.sc.crator.model.SpreadCRA <em>Spread CRA</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.sc.crator.model.SpreadCRA
+	 * @generated
+	 */
+	public Adapter createSpreadCRAAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.sc.crator.model.VoidCRA <em>Void CRA</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.sc.crator.model.VoidCRA
+	 * @generated
+	 */
+	public Adapter createVoidCRAAdapter() {
 		return null;
 	}
 

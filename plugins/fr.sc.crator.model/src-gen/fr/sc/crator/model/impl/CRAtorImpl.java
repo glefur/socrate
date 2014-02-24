@@ -1,25 +1,22 @@
 /**
  */
-package fr.sc.crator.impl;
-
-import fr.sc.crator.CRAWeek;
-import fr.sc.crator.CRAtor;
-import fr.sc.crator.CratorPackage;
-import fr.sc.crator.Task;
+package fr.sc.crator.model.impl;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import fr.sc.crator.model.CRA;
+import fr.sc.crator.model.CRAtor;
+import fr.sc.crator.model.CratorPackage;
+import fr.sc.crator.model.Task;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,8 +25,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link fr.sc.crator.impl.CRAtorImpl#getWeeks <em>Weeks</em>}</li>
- *   <li>{@link fr.sc.crator.impl.CRAtorImpl#getTasks <em>Tasks</em>}</li>
+ *   <li>{@link fr.sc.crator.model.impl.CRAtorImpl#getCras <em>Cras</em>}</li>
+ *   <li>{@link fr.sc.crator.model.impl.CRAtorImpl#getTasks <em>Tasks</em>}</li>
  * </ul>
  * </p>
  *
@@ -37,14 +34,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class CRAtorImpl extends EObjectImpl implements CRAtor {
 	/**
-	 * The cached value of the '{@link #getWeeks() <em>Weeks</em>}' containment reference list.
+	 * The cached value of the '{@link #getCras() <em>Cras</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getWeeks()
+	 * @see #getCras()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<CRAWeek> weeks;
+	protected EList<CRA> cras;
 
 	/**
 	 * The cached value of the '{@link #getTasks() <em>Tasks</em>}' containment reference list.
@@ -80,11 +77,11 @@ public class CRAtorImpl extends EObjectImpl implements CRAtor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<CRAWeek> getWeeks() {
-		if (weeks == null) {
-			weeks = new EObjectContainmentEList<CRAWeek>(CRAWeek.class, this, CratorPackage.CR_ATOR__WEEKS);
+	public EList<CRA> getCras() {
+		if (cras == null) {
+			cras = new EObjectContainmentWithInverseEList<CRA>(CRA.class, this, CratorPackage.CR_ATOR__CRAS, CratorPackage.CRA__CRATOR);
 		}
-		return weeks;
+		return cras;
 	}
 
 	/**
@@ -102,13 +99,42 @@ public class CRAtorImpl extends EObjectImpl implements CRAtor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Task getTask(String code) {
+		for (Task task : getTasks()) {
+			if (code.equals(task.getCode())) {
+				return task;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case CratorPackage.CR_ATOR__CRAS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getCras()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CratorPackage.CR_ATOR__WEEKS:
-				return ((InternalEList<?>)getWeeks()).basicRemove(otherEnd, msgs);
+			case CratorPackage.CR_ATOR__CRAS:
+				return ((InternalEList<?>)getCras()).basicRemove(otherEnd, msgs);
 			case CratorPackage.CR_ATOR__TASKS:
 				return ((InternalEList<?>)getTasks()).basicRemove(otherEnd, msgs);
 		}
@@ -123,8 +149,8 @@ public class CRAtorImpl extends EObjectImpl implements CRAtor {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CratorPackage.CR_ATOR__WEEKS:
-				return getWeeks();
+			case CratorPackage.CR_ATOR__CRAS:
+				return getCras();
 			case CratorPackage.CR_ATOR__TASKS:
 				return getTasks();
 		}
@@ -140,9 +166,9 @@ public class CRAtorImpl extends EObjectImpl implements CRAtor {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CratorPackage.CR_ATOR__WEEKS:
-				getWeeks().clear();
-				getWeeks().addAll((Collection<? extends CRAWeek>)newValue);
+			case CratorPackage.CR_ATOR__CRAS:
+				getCras().clear();
+				getCras().addAll((Collection<? extends CRA>)newValue);
 				return;
 			case CratorPackage.CR_ATOR__TASKS:
 				getTasks().clear();
@@ -160,8 +186,8 @@ public class CRAtorImpl extends EObjectImpl implements CRAtor {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CratorPackage.CR_ATOR__WEEKS:
-				getWeeks().clear();
+			case CratorPackage.CR_ATOR__CRAS:
+				getCras().clear();
 				return;
 			case CratorPackage.CR_ATOR__TASKS:
 				getTasks().clear();
@@ -178,8 +204,8 @@ public class CRAtorImpl extends EObjectImpl implements CRAtor {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CratorPackage.CR_ATOR__WEEKS:
-				return weeks != null && !weeks.isEmpty();
+			case CratorPackage.CR_ATOR__CRAS:
+				return cras != null && !cras.isEmpty();
 			case CratorPackage.CR_ATOR__TASKS:
 				return tasks != null && !tasks.isEmpty();
 		}

@@ -1,6 +1,6 @@
 /**
  */
-package fr.sc.crator;
+package fr.sc.crator.model;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -12,12 +12,12 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link fr.sc.crator.Work#getLoad <em>Load</em>}</li>
- *   <li>{@link fr.sc.crator.Work#getTask <em>Task</em>}</li>
+ *   <li>{@link fr.sc.crator.model.Work#getLoad <em>Load</em>}</li>
+ *   <li>{@link fr.sc.crator.model.Work#getTask <em>Task</em>}</li>
  * </ul>
  * </p>
  *
- * @see fr.sc.crator.CratorPackage#getWork()
+ * @see fr.sc.crator.model.CratorPackage#getWork()
  * @model
  * @generated
  */
@@ -32,14 +32,14 @@ public interface Work extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Load</em>' attribute.
 	 * @see #setLoad(double)
-	 * @see fr.sc.crator.CratorPackage#getWork_Load()
+	 * @see fr.sc.crator.model.CratorPackage#getWork_Load()
 	 * @model required="true"
 	 * @generated
 	 */
 	double getLoad();
 
 	/**
-	 * Sets the value of the '{@link fr.sc.crator.Work#getLoad <em>Load</em>}' attribute.
+	 * Sets the value of the '{@link fr.sc.crator.model.Work#getLoad <em>Load</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Load</em>' attribute.
@@ -58,14 +58,14 @@ public interface Work extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Task</em>' reference.
 	 * @see #setTask(Task)
-	 * @see fr.sc.crator.CratorPackage#getWork_Task()
+	 * @see fr.sc.crator.model.CratorPackage#getWork_Task()
 	 * @model required="true"
 	 * @generated
 	 */
 	Task getTask();
 
 	/**
-	 * Sets the value of the '{@link fr.sc.crator.Work#getTask <em>Task</em>}' reference.
+	 * Sets the value of the '{@link fr.sc.crator.model.Work#getTask <em>Task</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Task</em>' reference.

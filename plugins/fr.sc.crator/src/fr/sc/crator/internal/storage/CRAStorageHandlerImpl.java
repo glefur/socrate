@@ -37,12 +37,15 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 import com.google.common.collect.Maps;
 
-import fr.sc.crator.internal.model.SpreadCRA;
-import fr.sc.crator.internal.model.VoidCRA;
 import fr.sc.crator.logging.CRAtorLogger;
 import fr.sc.crator.model.CRA;
 import fr.sc.crator.model.CRADay;
+import fr.sc.crator.model.CRAWeek;
+import fr.sc.crator.model.CRAtor;
+import fr.sc.crator.model.CratorFactory;
+import fr.sc.crator.model.SpreadCRA;
 import fr.sc.crator.model.Task;
+import fr.sc.crator.model.VoidCRA;
 import fr.sc.crator.model.Work;
 import fr.sc.crator.storage.CRAStorageHandler;
 
@@ -71,10 +74,10 @@ public class CRAStorageHandlerImpl implements CRAStorageHandler {
 
 	/**
 	 * {@inheritDoc}
-	 * @see fr.sc.crator.storage.CRAStorageHandler#readCRA(java.lang.String)
+	 * @see fr.sc.crator.storage.CRAStorageHandler#readCRA(fr.sc.crator.model.CRAtor, int, java.lang.String)
 	 */
 	@Override
-	public CRA readCRA(String source) {
+	public CRA readCRA(CRAtor crator, int weekNumber, String source) {
 		try {
 			FileInputStream file = new FileInputStream(new File(source));
 			logger.log(CRAtorLogger.LOG_DEBUG, "Trying to read file " + source);
@@ -82,7 +85,13 @@ public class CRAStorageHandlerImpl implements CRAStorageHandler {
 			file.close();
 			Sheet s = wb.getSheetAt(0);
 			logger.log(CRAtorLogger.LOG_DEBUG, "Instanciating a SpreadCRA");
-			SpreadCRA cra = new SpreadCRA(source, s);
+			SpreadCRA cra = CratorFactory.eINSTANCE.createSpreadCRA();
+			cra.setSheet(s);
+			cra.setSource(source);
+			cra.setWeekNumber(weekNumber);
+			CRAWeek week = CratorFactory.eINSTANCE.createCRAWeek();
+			cra.setWeek(week);
+			crator.getCras().add(cra);
 			logger.log(CRAtorLogger.LOG_DEBUG, "Loading existing data");
 			loadWeek(cra);
 			return cra;
@@ -91,7 +100,9 @@ public class CRAStorageHandlerImpl implements CRAStorageHandler {
 		} catch (IOException e) {
 			logger.log(CRAtorLogger.LOG_ERROR, "An error occured during loading CRA of " + source + " file. Error: " + e.getMessage());
 		}
-		return new VoidCRA();
+		VoidCRA result = CratorFactory.eINSTANCE.createVoidCRA();
+		crator.getCras().add(result);
+		return result;
 	}
 
 	/**
@@ -152,12 +163,21 @@ public class CRAStorageHandlerImpl implements CRAStorageHandler {
 		while (code != null && !EMPTY_STRING.equals(code)) {
 			Cell titleCell = row.getCell(TITLE_CELL_NUMBER);
 			String title = titleCell.getStringCellValue();
-			Task task = new Task(code, title);
+			Task task = cra.getCrator().getTask(code);
+			if (task == null) {
+				task = CratorFactory.eINSTANCE.createTask();
+				task.setCode(code);
+				task.setDescription(title);
+				cra.getCrator().getTasks().add(task);
+			}
 			for (int i = Calendar.MONDAY; i <= Calendar.FRIDAY; i++) {
 				Cell loadCell = row.getCell(DAY_CELL_OFFSET + i);
 				double load = loadCell.getNumericCellValue();
 				if (load > 0) {
-					cra.getWeek().getDay(i).addWork(load, task);
+					Work work = CratorFactory.eINSTANCE.createWork();
+					work.setLoad(load);
+					work.setTask(task);
+					cra.getWeek().getDay(i).getWorks().add(work);
 				}
 			}
 			currentRow++;

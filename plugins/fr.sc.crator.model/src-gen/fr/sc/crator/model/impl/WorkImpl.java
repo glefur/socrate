@@ -1,10 +1,10 @@
 /**
  */
-package fr.sc.crator.impl;
+package fr.sc.crator.model.impl;
 
-import fr.sc.crator.CratorPackage;
-import fr.sc.crator.Task;
-import fr.sc.crator.Work;
+import fr.sc.crator.model.CratorPackage;
+import fr.sc.crator.model.Task;
+import fr.sc.crator.model.Work;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -21,8 +21,8 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link fr.sc.crator.impl.WorkImpl#getLoad <em>Load</em>}</li>
- *   <li>{@link fr.sc.crator.impl.WorkImpl#getTask <em>Task</em>}</li>
+ *   <li>{@link fr.sc.crator.model.impl.WorkImpl#getLoad <em>Load</em>}</li>
+ *   <li>{@link fr.sc.crator.model.impl.WorkImpl#getTask <em>Task</em>}</li>
  * </ul>
  * </p>
  *

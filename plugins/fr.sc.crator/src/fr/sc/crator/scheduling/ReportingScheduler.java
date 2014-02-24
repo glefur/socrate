@@ -21,6 +21,7 @@ package fr.sc.crator.scheduling;
 import java.util.List;
 
 import fr.sc.crator.model.CRA;
+import fr.sc.crator.model.CRAtor;
 
 /**
  *
@@ -29,8 +30,9 @@ import fr.sc.crator.model.CRA;
 public interface ReportingScheduler {
 
 	/**
+	 * @param crator the global crator
 	 * @return the {@link List} of {@link CRA} to fill in.
 	 */
-	List<CRA> craToFillIn();
+	List<CRA> craToFillIn(CRAtor crator);
 	
 }

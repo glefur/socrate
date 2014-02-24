@@ -19,6 +19,7 @@
 package fr.sc.crator.storage;
 
 import fr.sc.crator.model.CRA;
+import fr.sc.crator.model.CRAtor;
 
 /**
  *
@@ -28,9 +29,11 @@ public interface CRAStorageHandler {
 
 	/**
 	 * Read the specified CRA.
+	 * @param crator global {@link CRAtor}.
+	 * @param weekNumber week number of the analyzed CRA.
 	 * @param source of the CRA to read.
 	 */
-	CRA readCRA(String source);
+	CRA readCRA(CRAtor crator, int weekNumber, String source);
 	
 	/**
 	 * @param cra

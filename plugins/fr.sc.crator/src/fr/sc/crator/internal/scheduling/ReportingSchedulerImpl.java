@@ -25,6 +25,7 @@ import com.google.common.collect.Lists;
 
 import fr.sc.crator.logging.CRAtorLogger;
 import fr.sc.crator.model.CRA;
+import fr.sc.crator.model.CRAtor;
 import fr.sc.crator.scheduling.ReportingScheduler;
 import fr.sc.crator.storage.CRAStorageHandler;
 
@@ -65,13 +66,13 @@ public class ReportingSchedulerImpl implements ReportingScheduler {
 	 * @see fr.sc.crator.scheduling.ReportingScheduler#craToFillIn()
 	 */
 	@Override
-	public List<CRA> craToFillIn() {
+	public List<CRA> craToFillIn(CRAtor crator) {
 		cratorLogger.log(CRAtorLogger.LOG_DEBUG, "Computing CRA to fill in...");
 		List<CRA> result = Lists.newArrayList();
 		int weekToCheck = getWeekOfTheYear() - 1;
 		while (weekToCheck > 0) {
 			cratorLogger.log(CRAtorLogger.LOG_DEBUG, "Analyzing CRA of week " + weekToCheck);
-			CRA cra = storageHandler.readCRA(craPathForWeek(weekToCheck));
+			CRA cra = storageHandler.readCRA(crator, weekToCheck, craPathForWeek(weekToCheck));
 			if (!storageHandler.isFilled(cra)) {
 				cratorLogger.log(CRAtorLogger.LOG_DEBUG, "Adding CRA of week " + weekToCheck + " to list of CRA to fill in");
 				result.add(cra);
