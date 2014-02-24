@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Apache POI Bundle
+Bundle-SymbolicName: org.apache.poi
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Apache Foundation
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ClassPath: .,
+ lib/poi-3.10-FINAL-20140208.jar,
+ lib/poi-ooxml-3.10-FINAL-20140208.jar
+Export-Package: org.apache.poi.openxml4j.exceptions,
+ org.apache.poi.ss.usermodel
