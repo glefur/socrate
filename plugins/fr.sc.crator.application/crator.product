@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="CRAtor" uid="fr.sc.crator.application" id="fr.sc.crator.application.CRAtor" application="fr.sc.crator.application.application" version="1.0.0.qualifier" useFeatures="false" includeLaunchers="true">
+<product name="crator" uid="fr.sc.crator.application.crator" id="fr.sc.crator.application.product" application="fr.sc.crator.application.application" version="1.0.0.qualifier" useFeatures="false" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>

@@ -23,5 +23,17 @@
          </property>
       </product>
    </extension>
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="fr.sc.crator.application.application"
+            name="crator">
+         <property
+               name="appName"
+               value="crator">
+         </property>
+      </product>
+   </extension>
 
 </plugin>
