@@ -73,8 +73,9 @@ public class ReportingSchedulerImpl implements ReportingScheduler {
 		while (weekToCheck > 0) {
 			cratorLogger.log(CRAtorLogger.LOG_DEBUG, "Analyzing CRA of week " + weekToCheck);
 			CRA cra = storageHandler.readCRA(crator, weekToCheck, craPathForWeek(weekToCheck));
-			if (!storageHandler.isFilled(cra)) {
+			if (!cra.craFilled()) {
 				cratorLogger.log(CRAtorLogger.LOG_DEBUG, "Adding CRA of week " + weekToCheck + " to list of CRA to fill in");
+				crator.getCras().add(cra);
 				result.add(cra);
 				weekToCheck--;
 			} else {

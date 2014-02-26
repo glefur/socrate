@@ -17,12 +17,14 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -61,8 +63,31 @@ public class CRAWeekItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addWorkedLoadPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Worked Load feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addWorkedLoadPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_CRAWeek_workedLoad_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CRAWeek_workedLoad_feature", "_UI_CRAWeek_type"),
+				 CratorPackage.Literals.CRA_WEEK__WORKED_LOAD,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -114,7 +139,8 @@ public class CRAWeekItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_CRAWeek_type");
+		CRAWeek craWeek = (CRAWeek)object;
+		return getString("_UI_CRAWeek_type") + " " + craWeek.getWorkedLoad();
 	}
 
 	/**
@@ -129,6 +155,9 @@ public class CRAWeekItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(CRAWeek.class)) {
+			case CratorPackage.CRA_WEEK__WORKED_LOAD:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case CratorPackage.CRA_WEEK__DAYS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

@@ -28,8 +28,6 @@ import java.util.Map;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellValue;
-import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -57,11 +55,9 @@ public class CRAStorageHandlerImpl implements CRAStorageHandler {
 
 	private static final String EMPTY_STRING = "";
 	private static final int STARTING_ROW_NUMBER = 7;
-	private static final int ENDING_ROW_NUMBER = 20;
 	private static final int CODE_CELL_NUMBER = 2;
 	private static final int TITLE_CELL_NUMBER = 3;
 	private static final int DAY_CELL_OFFSET = 4;
-	private static final int TOTALLOAD_CELL_NUMBER = 11;
 	
 	private CRAtorLogger logger;
 	
@@ -83,17 +79,18 @@ public class CRAStorageHandlerImpl implements CRAStorageHandler {
 			logger.log(CRAtorLogger.LOG_DEBUG, "Trying to read file " + source);
 			Workbook wb = WorkbookFactory.create(file);
 			file.close();
-			Sheet s = wb.getSheetAt(0);
+			Sheet sheet = wb.getSheetAt(0);
 			logger.log(CRAtorLogger.LOG_DEBUG, "Instanciating a SpreadCRA");
 			SpreadCRA cra = CratorFactory.eINSTANCE.createSpreadCRA();
-			cra.setSheet(s);
+			cra.setSheet(sheet);
 			cra.setSource(source);
 			cra.setWeekNumber(weekNumber);
 			CRAWeek week = CratorFactory.eINSTANCE.createCRAWeek();
+			double workedDay = sheet.getRow(1).getCell(1).getNumericCellValue();
+			week.setWorkedLoad(workedDay);
 			cra.setWeek(week);
-			crator.getCras().add(cra);
 			logger.log(CRAtorLogger.LOG_DEBUG, "Loading existing data");
-			loadWeek(cra);
+			loadWeek(crator, cra);
 			return cra;
 		} catch (InvalidFormatException e) {
 			logger.log(CRAtorLogger.LOG_ERROR, "An error occured during loading CRA of " + source + " file. Error: " + e.getMessage());
@@ -129,33 +126,7 @@ public class CRAStorageHandlerImpl implements CRAStorageHandler {
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * @see fr.sc.crator.storage.CRAStorageHandler#isFilled(fr.sc.crator.model.CRA)
-	 */
-	@Override
-	public boolean isFilled(CRA cra) {
-		if (cra instanceof SpreadCRA) {
-			Sheet sheet = ((SpreadCRA) cra).getSheet();
-			double workedDay = sheet.getRow(1).getCell(1).getNumericCellValue();
-			logger.log(CRAtorLogger.LOG_DEBUG, "Worked days:" + workedDay);
-			double totalWork = 0;
-			FormulaEvaluator evaluator = sheet.getWorkbook().getCreationHelper().createFormulaEvaluator();
-			for (int rowNumber = STARTING_ROW_NUMBER; rowNumber < ENDING_ROW_NUMBER; rowNumber++) {
-				Row row = sheet.getRow(rowNumber);
-				Cell cell = row.getCell(TOTALLOAD_CELL_NUMBER);
-				CellValue cellEvaluation = evaluator.evaluate(cell);
-				totalWork += cellEvaluation.getNumberValue();
-			}
-			logger.log(CRAtorLogger.LOG_DEBUG, "Total work:" + totalWork);			
-			boolean result = totalWork >= workedDay;
-			logger.log(CRAtorLogger.LOG_DEBUG, "CRA " + cra.getSource() + " filled ? " + result);			
-			return result;
-		}
-		return true;
-	}
-
-	private void loadWeek(SpreadCRA cra) {
+	private void loadWeek(CRAtor crator, SpreadCRA cra) {
 		int currentRow = STARTING_ROW_NUMBER;
 		Row row = cra.getSheet().getRow(currentRow);
 		Cell codeCell = row.getCell(CODE_CELL_NUMBER);
@@ -163,12 +134,12 @@ public class CRAStorageHandlerImpl implements CRAStorageHandler {
 		while (code != null && !EMPTY_STRING.equals(code)) {
 			Cell titleCell = row.getCell(TITLE_CELL_NUMBER);
 			String title = titleCell.getStringCellValue();
-			Task task = cra.getCrator().getTask(code);
+			Task task = crator.getTask(code);
 			if (task == null) {
 				task = CratorFactory.eINSTANCE.createTask();
 				task.setCode(code);
 				task.setDescription(title);
-				cra.getCrator().getTasks().add(task);
+				crator.getTasks().add(task);
 			}
 			for (int i = Calendar.MONDAY; i <= Calendar.FRIDAY; i++) {
 				Cell loadCell = row.getCell(DAY_CELL_OFFSET + i);

@@ -159,13 +159,22 @@ public interface CratorPackage extends EPackage {
 	int CRA_WEEK = 2;
 
 	/**
+	 * The feature id for the '<em><b>Worked Load</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CRA_WEEK__WORKED_LOAD = 0;
+
+	/**
 	 * The feature id for the '<em><b>Days</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CRA_WEEK__DAYS = 0;
+	int CRA_WEEK__DAYS = 1;
 
 	/**
 	 * The number of structural features of the '<em>CRA Week</em>' class.
@@ -174,7 +183,7 @@ public interface CratorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CRA_WEEK_FEATURE_COUNT = 1;
+	int CRA_WEEK_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link fr.sc.crator.model.impl.CRADayImpl <em>CRA Day</em>}' class.
@@ -515,6 +524,17 @@ public interface CratorPackage extends EPackage {
 	EClass getCRAWeek();
 
 	/**
+	 * Returns the meta object for the attribute '{@link fr.sc.crator.model.CRAWeek#getWorkedLoad <em>Worked Load</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Worked Load</em>'.
+	 * @see fr.sc.crator.model.CRAWeek#getWorkedLoad()
+	 * @see #getCRAWeek()
+	 * @generated
+	 */
+	EAttribute getCRAWeek_WorkedLoad();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link fr.sc.crator.model.CRAWeek#getDays <em>Days</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -762,6 +782,14 @@ public interface CratorPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CRA_WEEK = eINSTANCE.getCRAWeek();
+
+		/**
+		 * The meta object literal for the '<em><b>Worked Load</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CRA_WEEK__WORKED_LOAD = eINSTANCE.getCRAWeek_WorkedLoad();
 
 		/**
 		 * The meta object literal for the '<em><b>Days</b></em>' containment reference list feature.

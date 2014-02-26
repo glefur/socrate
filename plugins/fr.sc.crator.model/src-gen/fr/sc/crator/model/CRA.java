@@ -115,7 +115,7 @@ public interface CRA extends EObject {
 	 * @see #setCrator(CRAtor)
 	 * @see fr.sc.crator.model.CratorPackage#getCRA_Crator()
 	 * @see fr.sc.crator.model.CRAtor#getCras
-	 * @model opposite="cras" required="true" transient="false"
+	 * @model opposite="cras" required="true"
 	 * @generated
 	 */
 	CRAtor getCrator();
@@ -129,5 +129,13 @@ public interface CRA extends EObject {
 	 * @generated
 	 */
 	void setCrator(CRAtor value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true"
+	 * @generated
+	 */
+	boolean craFilled();
 
 } // CRA

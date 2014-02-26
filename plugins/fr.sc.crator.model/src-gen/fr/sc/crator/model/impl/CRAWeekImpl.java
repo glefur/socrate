@@ -9,6 +9,7 @@ import fr.sc.crator.model.CratorPackage;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -16,6 +17,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -28,6 +30,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link fr.sc.crator.model.impl.CRAWeekImpl#getWorkedLoad <em>Worked Load</em>}</li>
  *   <li>{@link fr.sc.crator.model.impl.CRAWeekImpl#getDays <em>Days</em>}</li>
  * </ul>
  * </p>
@@ -35,6 +38,24 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class CRAWeekImpl extends EObjectImpl implements CRAWeek {
+	/**
+	 * The default value of the '{@link #getWorkedLoad() <em>Worked Load</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWorkedLoad()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final double WORKED_LOAD_EDEFAULT = 0.0;
+	/**
+	 * The cached value of the '{@link #getWorkedLoad() <em>Worked Load</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWorkedLoad()
+	 * @generated
+	 * @ordered
+	 */
+	protected double workedLoad = WORKED_LOAD_EDEFAULT;
 	/**
 	 * The cached value of the '{@link #getDays() <em>Days</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -62,6 +83,27 @@ public class CRAWeekImpl extends EObjectImpl implements CRAWeek {
 	@Override
 	protected EClass eStaticClass() {
 		return CratorPackage.Literals.CRA_WEEK;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public double getWorkedLoad() {
+		return workedLoad;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setWorkedLoad(double newWorkedLoad) {
+		double oldWorkedLoad = workedLoad;
+		workedLoad = newWorkedLoad;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CratorPackage.CRA_WEEK__WORKED_LOAD, oldWorkedLoad, workedLoad));
 	}
 
 	/**
@@ -128,6 +170,8 @@ public class CRAWeekImpl extends EObjectImpl implements CRAWeek {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case CratorPackage.CRA_WEEK__WORKED_LOAD:
+				return getWorkedLoad();
 			case CratorPackage.CRA_WEEK__DAYS:
 				return getDays();
 		}
@@ -143,6 +187,9 @@ public class CRAWeekImpl extends EObjectImpl implements CRAWeek {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case CratorPackage.CRA_WEEK__WORKED_LOAD:
+				setWorkedLoad((Double)newValue);
+				return;
 			case CratorPackage.CRA_WEEK__DAYS:
 				getDays().clear();
 				getDays().addAll((Collection<? extends CRADay>)newValue);
@@ -159,6 +206,9 @@ public class CRAWeekImpl extends EObjectImpl implements CRAWeek {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case CratorPackage.CRA_WEEK__WORKED_LOAD:
+				setWorkedLoad(WORKED_LOAD_EDEFAULT);
+				return;
 			case CratorPackage.CRA_WEEK__DAYS:
 				getDays().clear();
 				return;
@@ -174,10 +224,28 @@ public class CRAWeekImpl extends EObjectImpl implements CRAWeek {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case CratorPackage.CRA_WEEK__WORKED_LOAD:
+				return workedLoad != WORKED_LOAD_EDEFAULT;
 			case CratorPackage.CRA_WEEK__DAYS:
 				return days != null && !days.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (workedLoad: ");
+		result.append(workedLoad);
+		result.append(')');
+		return result.toString();
 	}
 
 } //CRAWeekImpl

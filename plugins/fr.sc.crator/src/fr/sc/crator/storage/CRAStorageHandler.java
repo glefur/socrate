@@ -40,11 +40,4 @@ public interface CRAStorageHandler {
 	 */
 	void writeCRA(CRA cra);
 	
-	/**
-	 * Defines if the given is already filled.
-	 * @param cra the {@link CRA} to check.
-	 * @return <code>true</code> if the {@link CRA} is already filled.
-	 */
-	boolean isFilled(CRA cra);
-	
 }

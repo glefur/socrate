@@ -35,6 +35,7 @@ import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -64,6 +65,27 @@ public abstract class CRAConfiguringDialog extends TrayDialog {
 	public CRAConfiguringDialog(Shell shell, AdapterFactory adapterFactory) {
 		super(shell);
 		this.adapterFactory = adapterFactory;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.jface.window.Window#configureShell(org.eclipse.swt.widgets.Shell)
+	 */
+	@Override
+	protected void configureShell(Shell newShell) {
+		super.configureShell(newShell);
+		setShellStyle(SWT.CLOSE | SWT.TITLE | SWT.BORDER | SWT.APPLICATION_MODAL);
+		newShell.setText("Correct the predefined input values");
+	}
+	
+
+	/**
+	 * {@inheritDoc}
+	 * @see org.eclipse.jface.dialogs.Dialog#getInitialSize()
+	 */
+	@Override
+	protected Point getInitialSize() {
+		return new Point(650, 450);
 	}
 
 	/**

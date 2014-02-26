@@ -239,8 +239,17 @@ public class CratorPackageImpl extends EPackageImpl implements CratorPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getCRAWeek_WorkedLoad() {
+		return (EAttribute)craWeekEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getCRAWeek_Days() {
-		return (EReference)craWeekEClass.getEStructuralFeatures().get(0);
+		return (EReference)craWeekEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -399,6 +408,7 @@ public class CratorPackageImpl extends EPackageImpl implements CratorPackage {
 		createEReference(craEClass, CRA__CRATOR);
 
 		craWeekEClass = createEClass(CRA_WEEK);
+		createEAttribute(craWeekEClass, CRA_WEEK__WORKED_LOAD);
 		createEReference(craWeekEClass, CRA_WEEK__DAYS);
 
 		craDayEClass = createEClass(CRA_DAY);
@@ -455,7 +465,7 @@ public class CratorPackageImpl extends EPackageImpl implements CratorPackage {
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(crAtorEClass, CRAtor.class, "CRAtor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCRAtor_Cras(), this.getCRA(), this.getCRA_Crator(), "cras", null, 0, -1, CRAtor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCRAtor_Cras(), this.getCRA(), this.getCRA_Crator(), "cras", null, 0, -1, CRAtor.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCRAtor_Tasks(), this.getTask(), null, "tasks", null, 0, -1, CRAtor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = addEOperation(crAtorEClass, this.getTask(), "getTask", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -465,9 +475,12 @@ public class CratorPackageImpl extends EPackageImpl implements CratorPackage {
 		initEAttribute(getCRA_WeekNumber(), ecorePackage.getEInt(), "weekNumber", null, 1, 1, fr.sc.crator.model.CRA.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCRA_Week(), this.getCRAWeek(), null, "week", null, 1, 1, fr.sc.crator.model.CRA.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCRA_Source(), ecorePackage.getEString(), "source", null, 1, 1, fr.sc.crator.model.CRA.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCRA_Crator(), this.getCRAtor(), this.getCRAtor_Cras(), "crator", null, 1, 1, fr.sc.crator.model.CRA.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCRA_Crator(), this.getCRAtor(), this.getCRAtor_Cras(), "crator", null, 1, 1, fr.sc.crator.model.CRA.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		addEOperation(craEClass, ecorePackage.getEBoolean(), "craFilled", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(craWeekEClass, CRAWeek.class, "CRAWeek", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getCRAWeek_WorkedLoad(), ecorePackage.getEDouble(), "workedLoad", null, 1, 1, CRAWeek.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCRAWeek_Days(), this.getCRADay(), null, "days", null, 5, 5, CRAWeek.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(craWeekEClass, this.getCRADay(), "getDay", 1, 1, IS_UNIQUE, IS_ORDERED);

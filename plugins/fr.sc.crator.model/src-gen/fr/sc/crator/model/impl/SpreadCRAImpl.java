@@ -276,6 +276,15 @@ public class SpreadCRAImpl extends EObjectImpl implements SpreadCRA {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean craFilled() {
+		return getWeek().totalLoad() >= getWeek().getWorkedLoad();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

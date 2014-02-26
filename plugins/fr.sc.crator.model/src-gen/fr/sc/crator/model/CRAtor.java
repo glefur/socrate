@@ -36,7 +36,7 @@ public interface CRAtor extends EObject {
 	 * @return the value of the '<em>Cras</em>' containment reference list.
 	 * @see fr.sc.crator.model.CratorPackage#getCRAtor_Cras()
 	 * @see fr.sc.crator.model.CRA#getCrator
-	 * @model opposite="crator" containment="true"
+	 * @model opposite="crator" containment="true" transient="true"
 	 * @generated
 	 */
 	EList<CRA> getCras();

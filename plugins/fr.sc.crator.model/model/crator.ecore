@@ -6,11 +6,12 @@
       <eParameters name="code" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="cras" upperBound="-1" eType="#//CRA"
-        containment="true" eOpposite="#//CRA/crator"/>
+        transient="true" containment="true" eOpposite="#//CRA/crator"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tasks" upperBound="-1"
         eType="#//Task" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CRA" abstract="true" interface="true">
+    <eOperations name="craFilled" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="weekNumber" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="week" lowerBound="1" eType="#//CRAWeek"
@@ -18,13 +19,15 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="source" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="crator" lowerBound="1"
-        eType="#//CRAtor" eOpposite="#//CRAtor/cras"/>
+        eType="#//CRAtor" transient="true" eOpposite="#//CRAtor/cras"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CRAWeek">
     <eOperations name="getDay" lowerBound="1" eType="#//CRADay">
       <eParameters name="day" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eOperations>
     <eOperations name="totalLoad" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="workedLoad" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="days" lowerBound="5" upperBound="5"
         eType="#//CRADay" containment="true"/>
   </eClassifiers>
